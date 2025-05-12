@@ -1,0 +1,23 @@
+{
+  "name": "gtsm1-shipping-info",
+  "version": "1.0.0",
+  "description": "Validate Shipping for GTSM1",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafaelgelatti-lexartlabs/gtsm1-shipping-info.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rafaelgelatti-lexartlabs/gtsm1-shipping-info/issues"
+  },
+  "homepage": "https://github.com/rafaelgelatti-lexartlabs/gtsm1-shipping-info#readme",
+  "dependencies": {
+    "express": "^5.1.0"
+  },
+  "devDependencies": {}
+}
