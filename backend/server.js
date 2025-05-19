@@ -3,6 +3,21 @@ const app = express();
 const port = 3000;
 const routes = require('./src/routes');
 const errorHandler = require('./src/middleware/errorHandler');
+const cors = require("cors");
+
+if (process.env.NODE_ENV != "production") {
+  app.use(cors({
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    origin: ['http://localhost:8000', "https://dev-jbs-lp-app.lexartlabs.com.br", `http://localhost:${process.env.FRONTEND_PORT}`],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
+  }));
+} else {
+  app.use(cors({
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    origin: ["https://jbs-lp-app.lexartlabs.com.br"],
+    allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
+  }));
+}
 
 // app.use(express.json());
 app.use(routes);

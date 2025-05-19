@@ -1,5 +1,4 @@
-import React from 'react'
-import { CCard, CCardBody, CCol, CCardHeader, CRow } from '@coreui/react'
+import { CCard, CCardBody, CCardHeader, CCol, CRow } from '@coreui/react'
 import {
   CChartBar,
   CChartDoughnut,
@@ -8,10 +7,12 @@ import {
   CChartPolarArea,
   CChartRadar,
 } from '@coreui/react-chartjs'
+import React from 'react'
 import { DocsLink } from 'src/components'
+import { getrandomvalues } from '../../utils/utils'
 
 const Charts = () => {
-  const random = () => Math.round(Math.random() * 100)
+  const random = () => Math.round(getrandomvalues() * 100)
 
   return (
     <CRow>

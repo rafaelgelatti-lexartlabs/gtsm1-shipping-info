@@ -1,4 +1,5 @@
-import React from 'react'
+import { cilLockLocked, cilUser } from '@coreui/icons'
+import CIcon from '@coreui/icons-react'
 import {
   CButton,
   CCard,
@@ -11,8 +12,7 @@ import {
   CInputGroupText,
   CRow,
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
+import React from 'react'
 
 const Register = () => {
   return (
@@ -29,7 +29,7 @@ const Register = () => {
                     <CInputGroupText>
                       <CIcon icon={cilUser} />
                     </CInputGroupText>
-                    <CFormInput placeholder="Username" autoComplete="username" />
+                    <CFormInput placeholder="Usuário" autoComplete="username" />
                   </CInputGroup>
                   <CInputGroup className="mb-3">
                     <CInputGroupText>@</CInputGroupText>
@@ -39,11 +39,7 @@ const Register = () => {
                     <CInputGroupText>
                       <CIcon icon={cilLockLocked} />
                     </CInputGroupText>
-                    <CFormInput
-                      type="password"
-                      placeholder="Password"
-                      autoComplete="new-password"
-                    />
+                    <CFormInput type="password" placeholder="Senha" autoComplete="new-password" />
                   </CInputGroup>
                   <CInputGroup className="mb-4">
                     <CInputGroupText>
@@ -51,7 +47,7 @@ const Register = () => {
                     </CInputGroupText>
                     <CFormInput
                       type="password"
-                      placeholder="Repeat password"
+                      placeholder="Repita a senha"
                       autoComplete="new-password"
                     />
                   </CInputGroup>

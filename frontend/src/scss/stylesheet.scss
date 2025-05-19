@@ -1,0 +1,346 @@
+$color-dark-blue: #232378;
+$color-white: #ffffff;
+$color-green: #91d700;
+$color-deep-blue: #14143c;
+$color-navy-blue: #005abe;
+$color-light-blue: #1eaaf5;
+$color-light-green: #c3e669;
+$color-cyan: #41cdf5;
+$color-soft-cyan: #c3ebfa;
+$color-light-gray-blue: #e1e6f5;
+$color-pastel-green: #82dc64;
+$color-swift: #ff5406;
+
+@function hex($color) {
+    @return #{red($color)}, #{green($color)}, #{blue($color)};
+}
+
+:root {
+    /* Cores */
+
+    --color-dark-blue: #232378;
+    --color-white: #ffffff;
+    --color-green: #91d700;
+    --color-deep-blue: #14143c;
+    --color-navy-blue: #005abe;
+    --color-light-blue: #1eaaf5;
+    --color-light-green: #c3e669;
+    --color-cyan: #41cdf5;
+    --color-soft-cyan: #c3ebfa;
+    --color-light-gray-blue: #e1e6f5; // botão cancelar
+    --color-pastel-green: #82dc64;
+    --yellow-doriana: #ffc107;
+
+    --cui-primary: var(--color-dark-blue);
+    --cui-primary-rgb: #{red($color-dark-blue)},
+    #{green($color-dark-blue)},
+    #{blue($color-dark-blue)};
+
+    --cui-secondary: var(--color-soft-cyan);
+    --cui-secondary-rgb: #{red($color-soft-cyan)},
+    #{green($color-soft-cyan)},
+    #{blue($color-soft-cyan)};
+
+    --cui-success: var(--color-green);
+    --cui-success-rgb: #{red($color-green)},
+    #{green($color-green)},
+    #{blue($color-green)};
+
+    --cui-warning: var(--color-light-green);
+    --cui-warning-rgb: #{red($color-light-green)},
+    #{green($color-light-green)},
+    #{blue($color-light-green)};
+
+    --cui-danger: var($color-swift);
+    --cui-danger-rgb: #{red($color-swift)},
+    #{green($color-swift)},
+    #{blue($color-swift)};
+
+    --cui-info: var(--color-light-blue);
+    --cui-info-rgb: #{red($color-light-blue)},
+    #{green($color-light-blue)},
+    #{blue($color-light-blue)};
+
+    --cui-dark: var(--color-deep-blue);
+    --cui-dark-rgb: #{red($color-deep-blue)},
+    #{green($color-deep-blue)},
+    #{blue($color-deep-blue)};
+
+    --cui-tertiary-bg: var(--color-light-gray-blue);
+
+    --cui-danger-10-rgb: rgba(220, 53, 69, 0.1);
+    --cui-no-cpf-row-10-rgb: rgba(128, 0, 128, 0.1);
+    --cui-refined-field: rgba(255, 255, 0, 0.1);
+
+    --cui-pagination-disabled-border-color: var(--cui-tertiary-bg) !important;
+
+    --cui-body-font-size: 16px;
+
+    .btn,
+    .form-control,
+    .accordion-button {
+        font-size: var(--cui-body-font-size);
+    }
+
+    /* Tipografia */
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-BoldItalic.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-BoldItalic.woff') format('woff');
+        font-weight: bold;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-Bold.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-Bold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-ExtraBold.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-ExtraBold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-ExtraBoldItalic.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-ExtraBoldItalic.woff') format('woff');
+        font-weight: bold;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-ExtraLight.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-ExtraLight.woff') format('woff');
+        font-weight: 200;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-Light.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-Light.woff') format('woff');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-Medium.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-Medium.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-Italic.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-Italic.woff') format('woff');
+        font-weight: normal;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-LightItalic.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-LightItalic.woff') format('woff');
+        font-weight: 300;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-ExtraLightItalic.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-ExtraLightItalic.woff') format('woff');
+        font-weight: 200;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-MediumItalic.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-MediumItalic.woff') format('woff');
+        font-weight: 500;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-Regular.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-SemiBoldItalic.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-SemiBoldItalic.woff') format('woff');
+        font-weight: 600;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-SemiBold.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-SemiBold.woff') format('woff');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-Thin.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-Thin.woff') format('woff');
+        font-weight: 100;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Text';
+        src:
+            url('../assets/fonts/JBSText-BoldItalic.woff2') format('woff2'),
+            url('../assets/fonts/JBSText-BoldItalic.woff') format('woff');
+        font-weight: bold;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Text';
+        src:
+            url('../assets/fonts/JBSText-LightItalic.woff2') format('woff2'),
+            url('../assets/fonts/JBSText-LightItalic.woff') format('woff');
+        font-weight: 300;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Text';
+        src:
+            url('../assets/fonts/JBSText-Italic.woff2') format('woff2'),
+            url('../assets/fonts/JBSText-Italic.woff') format('woff');
+        font-weight: normal;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Text';
+        src:
+            url('../assets/fonts/JBSText-Bold.woff2') format('woff2'),
+            url('../assets/fonts/JBSText-Bold.woff') format('woff');
+        font-weight: bold;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Display';
+        src:
+            url('../assets/fonts/JBSDisplay-ThinItalic.woff2') format('woff2'),
+            url('../assets/fonts/JBSDisplay-ThinItalic.woff') format('woff');
+        font-weight: 100;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Text';
+        src:
+            url('../assets/fonts/JBSText-Light.woff2') format('woff2'),
+            url('../assets/fonts/JBSText-Light.woff') format('woff');
+        font-weight: 300;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Text';
+        src:
+            url('../assets/fonts/JBSText-Regular.woff2') format('woff2'),
+            url('../assets/fonts/JBSText-Regular.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Text';
+        src:
+            url('../assets/fonts/JBSText-MediumItalic.woff2') format('woff2'),
+            url('../assets/fonts/JBSText-MediumItalic.woff') format('woff');
+        font-weight: 500;
+        font-style: italic;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Text';
+        src:
+            url('../assets/fonts/JBSText-SemiBold.woff2') format('woff2'),
+            url('../assets/fonts/JBSText-SemiBold.woff') format('woff');
+        font-weight: 600;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Text';
+        src:
+            url('../assets/fonts/JBSText-Medium.woff2') format('woff2'),
+            url('../assets/fonts/JBSText-Medium.woff') format('woff');
+        font-weight: 500;
+        font-style: normal;
+        font-display: swap;
+    }
+
+    @font-face {
+        font-family: 'JBS Text';
+        src:
+            url('../assets/fonts/JBSText-SemiBoldItalic.woff2') format('woff2'),
+            url('../assets/fonts/JBSText-SemiBoldItalic.woff') format('woff');
+        font-weight: 600;
+        font-style: italic;
+        font-display: swap;
+    }
+}

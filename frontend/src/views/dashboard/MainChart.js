@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react'
 
 import { CChartLine } from '@coreui/react-chartjs'
 import { getStyle } from '@coreui/utils'
+import { getrandomvalues } from '../../utils/utils'
 
 const MainChart = () => {
   const chartRef = useRef(null)
@@ -26,7 +27,7 @@ const MainChart = () => {
     })
   }, [chartRef])
 
-  const random = () => Math.round(Math.random() * 100)
+  const random = () => Math.round(getrandomvalues() * 100)
 
   return (
     <>

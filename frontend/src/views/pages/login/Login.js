@@ -1,6 +1,7 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import { cilLockLocked, cilUser } from '@coreui/icons'
+import CIcon from '@coreui/icons-react'
 import {
+  CAlert,
   CButton,
   CCard,
   CCardBody,
@@ -13,26 +14,85 @@ import {
   CInputGroupText,
   CRow,
 } from '@coreui/react'
-import CIcon from '@coreui/icons-react'
-import { cilLockLocked, cilUser } from '@coreui/icons'
+import { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+// import Logo from '../../../assets/brand/logo/RGB/SVG/logo.svg?react'
+// import { ReCaptchaComponent } from '../../../components'
+import '../../../scss/views/pages/Login/Login.scss'
+import { loginApi } from '../../../utils/fetchApi'
+import { saveAccessTokenInStorage, saveDataInStorage } from '../../../utils/localstorage'
 
 const Login = () => {
+  // const [recaptchaToken, setRecaptchaToken] = useState()
+  // const [refreshReCaptcha, setRefreshReCaptcha] = useState(false)
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const dispatch = useDispatch()
+  const [error, setError] = useState(false)
+  const navigate = useNavigate()
+
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+    // setRefreshReCaptcha((r) => !r)
+
+    if (!username || !password) {
+      setError('Por favor, preencha todos os campos.')
+      return
+    }
+
+    // if (!recaptchaToken) {
+    //   setError('Erro ReCaptcha.')
+    //   return
+    // }
+
+    try {
+      const user = await loginApi({
+        username,
+        password,
+        // recaptchaToken,
+      })
+
+
+      if (user?.token) {
+        saveAccessTokenInStorage(user.token)
+        saveDataInStorage('user', user.user)
+        dispatch({ type: 'set', user: user.user })
+        setError(false)
+        navigate('/upload-pausa')
+      } else {
+        setError(`Credenciais inválidas.`)
+      }
+    } catch (error) {
+      setError('Erro: Servidor está ocupado!')
+    }
+  }
+
   return (
-    <div className="bg-body-tertiary min-vh-100 d-flex flex-row align-items-center">
+    <div id="login-page" className="min-vh-100 d-flex flex-row align-items-center">
       <CContainer>
         <CRow className="justify-content-center">
-          <CCol md={8}>
+          <CCol md={6}>
+            <CRow className="justify-content-center">
+            </CRow>
             <CCardGroup>
-              <CCard className="p-4">
+              <CCard className="p-4" /* style={{ backgroundColor: 'var(--color-deep-blue)' }} */>
                 <CCardBody>
-                  <CForm>
+                  {error && <CAlert color="danger">{error}</CAlert>}
+                  <CForm onSubmit={handleSubmit}>
                     <h1>Login</h1>
-                    <p className="text-body-secondary">Sign In to your account</p>
+                    <p className="text-body-secondary">Entre na sua conta</p>
                     <CInputGroup className="mb-3">
                       <CInputGroupText>
                         <CIcon icon={cilUser} />
                       </CInputGroupText>
-                      <CFormInput placeholder="Username" autoComplete="username" />
+                      <CFormInput
+                        placeholder="Usuário"
+                        autoComplete="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required
+                      />
                     </CInputGroup>
                     <CInputGroup className="mb-4">
                       <CInputGroupText>
@@ -40,26 +100,42 @@ const Login = () => {
                       </CInputGroupText>
                       <CFormInput
                         type="password"
-                        placeholder="Password"
+                        placeholder="Senha"
                         autoComplete="current-password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                        icon={<CIcon icon={cilLockLocked} />}
                       />
                     </CInputGroup>
                     <CRow>
                       <CCol xs={6}>
-                        <CButton color="primary" className="px-4">
+                        <CButton
+                          type="submit"
+                          color="primary"
+                          className="px-4"
+                        // disabled={!recaptchaToken}
+                        >
                           Login
                         </CButton>
                       </CCol>
-                      <CCol xs={6} className="text-right">
+                      {/* <CCol xs={6} className="text-right">
                         <CButton color="link" className="px-0">
                           Forgot password?
                         </CButton>
-                      </CCol>
+                      </CCol> */}
+                    </CRow>
+                    <CRow>
+                      {/* <ReCaptchaComponent
+                        // action={setRecaptchaToken}
+                        onVerify={setRecaptchaToken}
+                        refreshReCaptcha={refreshReCaptcha}
+                      /> */}
                     </CRow>
                   </CForm>
                 </CCardBody>
               </CCard>
-              <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
+              {/* <CCard className="text-white bg-primary py-5" style={{ width: '44%' }}>
                 <CCardBody className="text-center">
                   <div>
                     <h2>Sign up</h2>
@@ -74,7 +150,7 @@ const Login = () => {
                     </Link>
                   </div>
                 </CCardBody>
-              </CCard>
+              </CCard> */}
             </CCardGroup>
           </CCol>
         </CRow>

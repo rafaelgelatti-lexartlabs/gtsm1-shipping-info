@@ -18,7 +18,7 @@ export default [
         ...globals.browser,
         ...globals.node,
       },
-      ecmaVersion: 'latest',
+      ecmaVersion: 2020,
       sourceType: 'module',
       parserOptions: {
         ecmaFeatures: {
