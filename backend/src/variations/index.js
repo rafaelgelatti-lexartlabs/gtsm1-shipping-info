@@ -4,7 +4,8 @@ const localVariations = require('../../output/variacoes.json')
 
 router.get('/', express.json(), async (req, res, next) => {
   try {
-    return res.json(localVariations);
+    const variations = localVariations.map(item => String(item).toLowerCase());
+    return res.json(variations);
   } catch (error) {
     return next(error)
   }
