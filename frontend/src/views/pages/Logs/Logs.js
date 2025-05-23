@@ -1,65 +1,41 @@
-import { cilFilter, cilX } from '@coreui/icons'
-import CIcon from '@coreui/icons-react'
 import {
   CAlert,
-  CButton,
   CCard,
   CCardBody,
   CCardHeader,
-  CCol,
-  CForm,
-  CFormInput,
-  CRow,
   CSpinner,
   CTable,
   CTableBody,
   CTableDataCell,
   CTableHead,
   CTableHeaderCell,
-  CTableRow,
+  CTableRow
 } from '@coreui/react'
-import moment from 'moment'
-import React, { useCallback, useEffect, useState } from 'react'
-import { getExcelOfLogs, getLogs } from '../../../utils/fetchApi'
+
+import { useCallback, useEffect, useState } from 'react'
+import { getExcelOfLogs, getVariations } from '../../../utils/fetchApi'
 
 const Logs = () => {
-  const [logs, setLogs] = useState([])
+  const [variations, setVariations] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [dateStart, setDateStart] = useState('')
   const [dateEnd, setDateEnd] = useState('')
 
-  const fetchLogs = useCallback(
-    async (isClean = false) => {
-      try {
-        setLoading(true)
-        setError(null)
-        const data = await getLogs(isClean ? {} : { dateStart, dateEnd })
-        console.log(data)
-        if (data?.response?.data === 'Invalid token') {
-          setError(data.response.data)
-          return
-        }
+  const fetchLogs = useCallback(async () => {
+    try {
+      setLoading(true)
+      setError(null)
+      const data = await getVariations()
+      setVariations(data)
+    } catch (err) {
+      setError(err.message)
+    } finally {
+      setLoading(false)
+    }
+  }, [dateStart, dateEnd])
 
-        // console.log(
-        //   moment(
-        //     new Date(data[0].createdAt).toISOString(),
-        //     moment.HTML5_FMT.DATETIME_LOCAL_MS,
-        //   ).format('YYYY-MM-DD HH:mm:ss'),
-        //   '¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨¨',
-        // )
-
-        setLogs(data)
-      } catch (err) {
-        setError(err.message)
-      } finally {
-        setLoading(false)
-      }
-    },
-    [dateStart, dateEnd],
-  )
-
-  const genenrateExcel = async () => {
+  const generateExcel = async () => {
     try {
       await getExcelOfLogs({ dateStart, dateEnd })
     } catch (err) {
@@ -67,11 +43,11 @@ const Logs = () => {
     }
   }
 
-  const cleanFilterPauses = async (e) => {
+  const cleanFilter = async (e) => {
     e.preventDefault()
     setDateEnd('')
     setDateStart('')
-    await fetchLogs(true)
+    await fetchLogs()
   }
 
   useEffect(() => {
@@ -80,10 +56,12 @@ const Logs = () => {
 
   useEffect(() => {
     if (!error) return
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setLoading(false)
-      setError(false)
+      setError(null)
     }, 3000)
+
+    return () => clearTimeout(timer)
   }, [error])
 
   const handleFilter = (e) => {
@@ -91,24 +69,14 @@ const Logs = () => {
     fetchLogs()
   }
 
-  const columns = [
-    { key: 'createdAt', label: 'Data/Hora' },
-    { key: 'username', label: 'Usuário' },
-    { key: 'email', label: 'Email' },
-    { key: 'unidad', label: 'Unidade' },
-    { key: 'operation', label: 'Operação' },
-    { key: 'resource', label: 'Tabela do banco de dados' },
-    { key: 'resourceId', label: 'ID Recurso' },
-  ]
-
   return (
     <CCard>
       <CCardHeader>
-        <h5 className="mb-0">Registros de Logs</h5>
+        <h5 className="mb-0">Variações</h5>
       </CCardHeader>
 
       <CCardBody>
-        <CForm onSubmit={handleFilter}>
+        {/* <CForm onSubmit={handleFilter}>
           <CRow className="g-3 mb-4">
             <CCol md={3}>
               <CFormInput
@@ -128,8 +96,8 @@ const Logs = () => {
               />
             </CCol>
 
-            <CCol xs={12} sm={6} md={4} lg={3} className="d-flex align-items-end w-auto">
-              <CButton size="sm" type="submit" /* className="d-flex flex-nowrap" */ color="primary">
+            <CCol xs={12} sm={6} md={4} lg={3} className="d-flex align-items-end">
+              <CButton size="sm" type="submit" color="primary">
                 <CIcon size="sm" icon={cilFilter} /> Filtrar
               </CButton>
               <CButton
@@ -138,8 +106,7 @@ const Logs = () => {
                   color: 'var(--cui-primary)',
                 }}
                 size="sm"
-                onClick={cleanFilterPauses}
-                // disabled={!canClean || !hasFilters}
+                onClick={cleanFilter}
                 className="ms-2"
               >
                 <CIcon size="sm" icon={cilX} /> Limpar
@@ -148,13 +115,13 @@ const Logs = () => {
                 size="sm"
                 className="text-nowrap ms-2"
                 color="success"
-                onClick={genenrateExcel}
+                onClick={generateExcel}
               >
                 Gerar XLSX
               </CButton>
             </CCol>
           </CRow>
-        </CForm>
+        </CForm> */}
 
         {error && <CAlert color="danger">{error}</CAlert>}
 
@@ -166,34 +133,20 @@ const Logs = () => {
           <CTable striped hover responsive>
             <CTableHead>
               <CTableRow>
-                {columns.map((column) => (
-                  <CTableHeaderCell key={column.key}>{column.label}</CTableHeaderCell>
-                ))}
+                <CTableHeaderCell>Variação</CTableHeaderCell>
               </CTableRow>
             </CTableHead>
-
             <CTableBody>
-              {logs.map((log) => (
-                <CTableRow key={log.id}>
-                  <CTableDataCell>
-                    {moment(
-                      new Date(log.createdAt).toISOString(),
-                      moment.HTML5_FMT.DATETIME_LOCAL_MS,
-                    ).format('DD/MM/YYYY')}
-                  </CTableDataCell>
-                  <CTableDataCell>{log?.username || 'N/A'}</CTableDataCell>
-                  <CTableDataCell>{log?.user?.email || 'N/A'}</CTableDataCell>
-                  <CTableDataCell>{log?.user?.unidad}</CTableDataCell>
-                  <CTableDataCell>{log?.operation}</CTableDataCell>
-                  <CTableDataCell>{log?.resource || 'N/A'}</CTableDataCell>
-                  <CTableDataCell>{log?.resourceId || 'N/A'}</CTableDataCell>
-                </CTableRow>
-              ))}
-
-              {logs.length === 0 && (
+              {variations.length > 0 ? (
+                variations.map((variation, idx) => (
+                  <CTableRow key={idx}>
+                    <CTableDataCell>{variation}</CTableDataCell>
+                  </CTableRow>
+                ))
+              ) : (
                 <CTableRow>
-                  <CTableDataCell colSpan={6} className="text-center">
-                    Nenhum registro encontrado
+                  <CTableDataCell className="text-center">
+                    Nenhuma variação encontrada
                   </CTableDataCell>
                 </CTableRow>
               )}

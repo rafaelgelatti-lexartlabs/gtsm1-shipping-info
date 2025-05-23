@@ -1,5 +1,3 @@
-import { cilInfo } from '@coreui/icons'
-import CIcon from '@coreui/icons-react'
 import {
   CAlert,
   CButton,
@@ -9,15 +7,13 @@ import {
   CCol,
   CForm,
   CFormLabel,
-  CLink,
   CRow,
-  CSpinner,
-  CTooltip,
+  CSpinner
 } from '@coreui/react'
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { checkUser, getExcelExamplePeople, uploadPlanilha } from '../../../utils/fetchApi'
-import { getDataInStorage, saveDataInStorage } from '../../../utils/localstorage'
+import { getDataInStorage } from '../../../utils/localstorage'
 import InputJBS from '../../components/atoms/InputJBS'
 
 const Importar_pessoas = () => {
@@ -125,7 +121,7 @@ const Importar_pessoas = () => {
       }
 
       handleClear()
-      setMsg({ message: 'Colaboradores atualizados com sucesso!', color: 'success' })
+      setMsg({ message: 'Variações atualizadas com sucesso!', color: 'success' })
       setLoading(false)
     } catch (error) {
       console.error(error)
@@ -145,12 +141,12 @@ const Importar_pessoas = () => {
     actualUser.password = undefined
     serverUser.password = undefined
 
-    if (JSON.stringify(actualUser) !== JSON.stringify(serverUser)) {
-      saveDataInStorage('user', serverUser)
-      if (!['ADMIN', 'SUPER_ADMIN'].includes(serverUser.type)) {
-        return navigate('/upload-pausa')
-      }
-    }
+    // if (JSON.stringify(actualUser) !== JSON.stringify(serverUser)) {
+    //   saveDataInStorage('user', serverUser)
+    //   if (!['ADMIN', 'SUPER_ADMIN'].includes(serverUser.type)) {
+    //     return navigate('/upload-pausa')
+    //   }
+    // }
   }
 
   useEffect(() => {
@@ -170,7 +166,7 @@ const Importar_pessoas = () => {
     <>
       {msg && <CAlert color={msg.color}>{msg.message}</CAlert>}
       <CCard>
-        <CCardHeader>Importador Planilha de Colaboradores</CCardHeader>
+        <CCardHeader>Importar Planilha de Variações</CCardHeader>
         <CCardBody>
           <CForm onSubmit={handleSubmit}>
             {/* Linha 3: Ano e Upload de Arquivo */}
@@ -188,7 +184,7 @@ const Importar_pessoas = () => {
                 />
               </CCol>
             </CRow>
-            <div className="d-flex align-items-center">
+            {/* <div className="d-flex align-items-center">
               <small>Visualização da Planilha</small>
               <CTooltip
                 trigger={['click']}
@@ -218,13 +214,13 @@ const Importar_pessoas = () => {
                   </div>
                 }
                 placement="right"
-                // interactive=""
+              // interactive=""
               >
                 <CButton color="light" size="sm" variant="ghost">
                   <CIcon icon={cilInfo} className="text-primary" />
                 </CButton>
               </CTooltip>
-            </div>
+            </div> */}
 
             {/* Botões Enviar e Limpar */}
             <div className="mt-2">

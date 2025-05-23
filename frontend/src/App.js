@@ -72,7 +72,7 @@ const App = () => {
             <Route exact path="/upload-pausa" name="Upload Pausa" element={<UploadPausa />} />
             <Route
               exact
-              path="/import-pessoas"
+              path="/import-variacoes"
               name="Importar Pessoas"
               element={<ImportPessoas />}
             />

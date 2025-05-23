@@ -106,7 +106,7 @@ async function uploadPlanilha(file) {
     formData.append('file', file)
     // })
 
-    const result = await axios.post(`${BASE_API_URL}/people/bulk`, formData, {
+    const result = await axios.post(`${BASE_API_URL}/receive`, formData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },
@@ -486,17 +486,12 @@ async function removeReportByIds(data) {
   }
 }
 
-async function getLogs(query) {
+async function getVariations() {
   try {
-    const filteredQuery = Object.fromEntries(
-      Object.entries(query).filter(([_, value]) => value !== undefined),
-    )
-
-    const queryString = new URLSearchParams(filteredQuery).toString()
-    const response = await axios.get(`${BASE_API_URL}/logs?${queryString}`)
-    return response?.data?.data
+    const response = await axios.get(`${BASE_API_URL}/variations`)
+    return response?.data
   } catch (error) {
-    console.error('Error on get logs', error)
+    console.error('Error on get variations', error)
     return error
   }
 }
@@ -655,13 +650,10 @@ export {
   getAllUnit,
   getExcelExamplePeople,
   getExcelOfLogs,
-  getExcelOfReports,
-  getLogs,
-  getNewJob,
+  getExcelOfReports, getNewJob,
   getPdfExampleReport,
   getReportById,
-  getReportList,
-  listUsers,
+  getReportList, getVariations, listUsers,
   loginApi,
   removeReportByIds,
   updateReports,

@@ -5,7 +5,7 @@ const variations = require('./variations');
 const login = require('./login');
 
 router.use('/receive', receive);
-router.use('/test-variations', variations);
+router.use('/variations', variations);
 router.use('/login', login);
 
 module.exports = router;

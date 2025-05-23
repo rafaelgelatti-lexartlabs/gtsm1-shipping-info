@@ -59,7 +59,7 @@ const Login = () => {
         saveDataInStorage('user', user.user)
         dispatch({ type: 'set', user: user.user })
         setError(false)
-        navigate('/upload-pausa')
+        navigate('/import-variacoes')
       } else {
         setError(`Credenciais inválidas.`)
       }

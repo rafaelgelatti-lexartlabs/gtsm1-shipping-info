@@ -22,26 +22,28 @@ const AppHeader = () => {
   const { colorMode, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
 
   const sidebarShow = useSelector((state) => state.sidebarShow)
-  const storedUser = useSelector((state) => state.user)
+  let storedUser = useSelector((state) => state.user)
   const headerRef = useRef()
   const dispatch = useDispatch()
 
   useEffect(() => {
+    console.log(getDataInStorage('user') !== user, "#$%$$%%$%%%%%%%%%%%%%%5");
+    console.log(user, "#$%$$%%$%%%%%%%%%%%%%%5");
+    console.log(storedUser, "#$%$$%%$%%%%%%%%%%%%%%5");
     if (!user) {
-      if (storedUser) {
+      if (storedUser && JSON.stringify(storedUser) !== '{}') {
         setUser(storedUser)
       } else {
         if (getDataInStorage('user') !== user) {
           setUser(getDataInStorage('user'))
           dispatch({ type: 'set', user: getDataInStorage('user') })
+          storedUser = getDataInStorage('user')
         }
       }
     }
   }, [storedUser])
 
   useEffect(() => {
-    console.log(user, '$$$$$$$$$$$$$4');
-
     if (!user) {
       if (storedUser) {
         setUser(storedUser)
@@ -49,6 +51,7 @@ const AppHeader = () => {
         if (getDataInStorage('user') !== user) {
           setUser(getDataInStorage('user'))
           dispatch({ type: 'set', user: getDataInStorage('user') })
+          storedUser = getDataInStorage('user')
         }
       }
     }

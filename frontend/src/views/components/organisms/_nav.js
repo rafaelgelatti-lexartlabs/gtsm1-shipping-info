@@ -27,12 +27,12 @@ export const getNavItems = (userType, hasPauseInSession) => {
       ? [
         {
           component: CNavItem,
-          name: 'Importador Planilha de Colaboradores',
-          to: '/import-pessoas',
+          name: 'Importar Planilha de Variações',
+          to: '/import-variacoes',
           className: 'text-wrap',
           onClick: () => {
             if (window.innerWidth <= mobilePX) {
-              navigate('/import-pessoas')
+              navigate('/import-variacoes')
               window.location.reload()
             }
           },
