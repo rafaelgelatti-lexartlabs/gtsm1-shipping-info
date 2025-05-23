@@ -13,20 +13,22 @@ import {
 } from '@coreui/react'
 
 import { useCallback, useEffect, useState } from 'react'
-import { getExcelOfLogs, getVariations } from '../../../utils/fetchApi'
+import { getExcelOfVariations, getVariations } from '../../../utils/fetchApi'
 
-const Logs = () => {
+const Variations = () => {
   const [variations, setVariations] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
   const [dateStart, setDateStart] = useState('')
   const [dateEnd, setDateEnd] = useState('')
 
-  const fetchLogs = useCallback(async () => {
+  const fetchVariations = useCallback(async () => {
     try {
       setLoading(true)
       setError(null)
       const data = await getVariations()
+      console.log(data);
+
       setVariations(data)
     } catch (err) {
       setError(err.message)
@@ -37,7 +39,7 @@ const Logs = () => {
 
   const generateExcel = async () => {
     try {
-      await getExcelOfLogs({ dateStart, dateEnd })
+      await getExcelOfVariations({ dateStart, dateEnd })
     } catch (err) {
       setError(err.message)
     }
@@ -47,11 +49,11 @@ const Logs = () => {
     e.preventDefault()
     setDateEnd('')
     setDateStart('')
-    await fetchLogs()
+    await fetchVariations()
   }
 
   useEffect(() => {
-    fetchLogs()
+    fetchVariations()
   }, [])
 
   useEffect(() => {
@@ -66,7 +68,7 @@ const Logs = () => {
 
   const handleFilter = (e) => {
     e.preventDefault()
-    fetchLogs()
+    fetchVariations()
   }
 
   return (
@@ -158,4 +160,4 @@ const Logs = () => {
   )
 }
 
-export default Logs
+export default Variations

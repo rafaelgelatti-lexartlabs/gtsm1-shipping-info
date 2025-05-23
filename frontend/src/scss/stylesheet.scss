@@ -31,7 +31,7 @@ $color-swift: #ff5406;
     --color-pastel-green: #82dc64;
     --yellow-doriana: #ffc107;
 
-    --cui-primary: var(--color-dark-blue);
+    --cui-primary: rgb(66, 70, 77);
     --cui-primary-rgb: #{red($color-dark-blue)},
     #{green($color-dark-blue)},
     #{blue($color-dark-blue)};

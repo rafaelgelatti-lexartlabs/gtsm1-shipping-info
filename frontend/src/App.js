@@ -29,7 +29,7 @@ const UserList = React.lazy(() => import('./views/pages/UserList/UserList'))
 const UploadPausa = React.lazy(() => import('./views/pages/upload_pausa/Upload_pausa'))
 const ImportPessoas = React.lazy(() => import('./views/pages/import_pessoas/Import_pessoas'))
 const NavHeaderLoader = React.lazy(() => import('./views/pages/loading/NavHeaderLoader'))
-const Logs = React.lazy(() => import('./views/pages/Logs/Logs'))
+const Variations = React.lazy(() => import('./views/pages/variations/Variations'))
 
 const App = () => {
   const { isColorModeSet, setColorMode } = useColorModes('coreui-free-react-admin-template-theme')
@@ -82,7 +82,7 @@ const App = () => {
             <Route exact path="/processos" name="Processos" element={<ProcessStatus />} />
             <Route exact path="/user-list" name="Lista de usuários" element={<UserList />} />
             <Route exact path="/carregando" name="Carregando" element={<NavHeaderLoader />} />
-            <Route exact path="/logs" name="Logs" element={<Logs />} />
+            <Route exact path="/variations" name="Variations" element={<Variations />} />
           </Route>
           <Route exact path="/404" name="Page 404" element={<Page404 />} />
           <Route exact path="/500" name="Page 500" element={<Page500 />} />

@@ -4,7 +4,6 @@ import { CDropdown, CDropdownItem, CDropdownMenu, CDropdownToggle } from '@coreu
 import PropTypes from 'prop-types'
 
 const AppHeaderDropdown = ({ user }) => {
-  console.log(user, "##############33");
 
   return (
     <CDropdown variant="nav-item">

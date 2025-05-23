@@ -496,7 +496,7 @@ async function getVariations() {
   }
 }
 
-async function getExcelOfLogs(query, format = 'xlsx') {
+async function getExcelOfVariations(query, format = 'xlsx') {
   try {
     const filteredQuery = Object.fromEntries(
       Object.entries(query).filter(([_, value]) => value !== undefined),
@@ -504,7 +504,7 @@ async function getExcelOfLogs(query, format = 'xlsx') {
 
     const queryString = new URLSearchParams(filteredQuery).toString()
 
-    const response = await axios.get(`${BASE_API_URL}/logs/xlsx?${queryString}`, {
+    const response = await axios.get(`${BASE_API_URL}/variations/xlsx?${queryString}`, {
       responseType: 'blob',
       headers: {
         format: format,
@@ -515,7 +515,7 @@ async function getExcelOfLogs(query, format = 'xlsx') {
 
     const link = document.createElement('a')
     link.href = url
-    link.setAttribute('download', `logs.${format}`)
+    link.setAttribute('download', `Variations.${format}`)
 
     document.body.appendChild(link)
 
@@ -524,7 +524,7 @@ async function getExcelOfLogs(query, format = 'xlsx') {
     link.parentNode.removeChild(link)
     window.URL.revokeObjectURL(url)
   } catch (error) {
-    console.error('Error on get logs xlsx', error)
+    console.error('Error on get Variations xlsx', error)
     return error
   }
 }
@@ -648,9 +648,7 @@ export {
   getAllReports,
   getAllSector,
   getAllUnit,
-  getExcelExamplePeople,
-  getExcelOfLogs,
-  getExcelOfReports, getNewJob,
+  getExcelExamplePeople, getExcelOfReports, getExcelOfVariations, getNewJob,
   getPdfExampleReport,
   getReportById,
   getReportList, getVariations, listUsers,

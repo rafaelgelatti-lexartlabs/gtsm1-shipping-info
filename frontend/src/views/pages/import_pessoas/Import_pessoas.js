@@ -11,9 +11,8 @@ import {
   CSpinner
 } from '@coreui/react'
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { checkUser, getExcelExamplePeople, uploadPlanilha } from '../../../utils/fetchApi'
-import { getDataInStorage } from '../../../utils/localstorage'
+import { /* checkUser, getExcelExamplePeople, */ uploadPlanilha } from '../../../utils/fetchApi'
+// import { getDataInStorage } from '../../../utils/localstorage'
 import InputJBS from '../../components/atoms/InputJBS'
 
 const Importar_pessoas = () => {
@@ -32,12 +31,12 @@ const Importar_pessoas = () => {
   ]
   const errorMsg = 'Tipo de arquivo não suportado. Use XLSX e CSV.'
 
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
 
-  const linkExamplePeople = async () => {
-    const exampleExcel = await getExcelExamplePeople()
-    return exampleExcel
-  }
+  // const linkExamplePeople = async () => {
+  //   const exampleExcel = await getExcelExamplePeople()
+  //   return exampleExcel
+  // }
 
   const handleChange = (e) => {
     if (visibleTooltip) {
@@ -134,12 +133,12 @@ const Importar_pessoas = () => {
   }
 
   const check = async () => {
-    const serverUser = await checkUser()
+    // const serverUser = await checkUser()
 
-    const actualUser = getDataInStorage('user')
+    // const actualUser = getDataInStorage('user')
 
-    actualUser.password = undefined
-    serverUser.password = undefined
+    // actualUser.password = undefined
+    // serverUser.password = undefined
 
     // if (JSON.stringify(actualUser) !== JSON.stringify(serverUser)) {
     //   saveDataInStorage('user', serverUser)

@@ -148,7 +148,7 @@ The documentation for the CoreUI Admin Template is hosted at our website [CoreUI
 
 For transparency into our release cycle and in striving to maintain backward compatibility, CoreUI Free Admin Template is maintained under [the Semantic Versioning guidelines](http://semver.org/).
 
-See [the Releases section of our project](https://github.com/coreui/coreui-free-react-admin-template/releases) for changelogs for each release version.
+See [the Releases section of our project](https://github.com/coreui/coreui-free-react-admin-template/releases) for changeVariations for each release version.
 
 ## Creators
 

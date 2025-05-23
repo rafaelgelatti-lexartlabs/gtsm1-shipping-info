@@ -27,9 +27,6 @@ const AppHeader = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
-    console.log(getDataInStorage('user') !== user, "#$%$$%%$%%%%%%%%%%%%%%5");
-    console.log(user, "#$%$$%%$%%%%%%%%%%%%%%5");
-    console.log(storedUser, "#$%$$%%$%%%%%%%%%%%%%%5");
     if (!user) {
       if (storedUser && JSON.stringify(storedUser) !== '{}') {
         setUser(storedUser)
@@ -66,7 +63,7 @@ const AppHeader = () => {
       <CContainer className="border-bottom px-4" fluid>
         <CHeaderToggler
           onClick={() => dispatch({ type: 'set', sidebarShow: !sidebarShow })}
-          style={{ marginInlineStart: '-14px', color: 'var(--color-navy-blue)' }}
+          style={{ marginInlineStart: '-14px', color: 'var(--cui-primary)' }}
         >
           <CIcon icon={cilMenu} size="lg" />
         </CHeaderToggler>
