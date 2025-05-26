@@ -1,9 +1,9 @@
-import { CCloseButton, CSidebar, CSidebarBrand, CSidebarHeader, CSidebarNav } from '@coreui/react'
+import { CCardImage, CCloseButton, CSidebar, CSidebarBrand, CSidebarHeader, CSidebarNav } from '@coreui/react'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 // import LogoDark from '../../../assets/brand/logo/RGB/SVG/Dark.svg?react'
-// import Logo from '../../../assets/brand/logo/RGB/SVG/logo.svg?react'
+import logo from '../../../assets/images/gtsm-logo.png'
 import { AppSidebarNav } from '../../../components/AppSidebarNav'
 import { getDataInStorage } from '../../../utils/localstorage'
 import { getNavItems } from './_nav'
@@ -46,6 +46,7 @@ const Sidebar = () => {
     >
       <CSidebarHeader className="border-bottom p-1">
         <CSidebarBrand to="/">
+          <CCardImage style={{ width: '200px', height: 'auto', marginLeft: '1rem' }} onClick={() => { }} src={logo} />
           {/* {{storedTheme === 'light' ? (
             // <Logo style={{ width: '100px', height: 'auto', margin: '3px' }} onClick={() => {}} />
           ) : (
