@@ -21,6 +21,8 @@ const corsOptions = {
 
     if (!origin) {
       const referer = req.headers.referer;
+      console.log(req.headers, 'headers');
+
       if (referer) {
         const refererOrigin = new URL(referer).origin;
         if (allowedOrigins.includes(refererOrigin)) {
