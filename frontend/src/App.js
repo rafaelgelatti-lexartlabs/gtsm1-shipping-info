@@ -12,7 +12,7 @@ import './scss/style.scss'
 import './scss/examples.scss'
 
 // Containers
-const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
+// const DefaultLayout = React.lazy(() => import('./layout/DefaultLayout'))
 const Layout = React.lazy(() => import('./layout/Layout'))
 
 // Pages
@@ -21,14 +21,14 @@ const Register = React.lazy(() => import('./views/pages/register/Register'))
 const Page404 = React.lazy(() => import('./views/pages/page404/Page404'))
 const Page500 = React.lazy(() => import('./views/pages/page500/Page500'))
 const Loading = React.lazy(() => import('./views/pages/loading/Loading'))
-const Pausas = React.lazy(() => import('./views/pages/pausas/Pausas'))
-const ProcessStatus = React.lazy(() => import('./views/pages/reports/Reports'))
+// const Pausas = React.lazy(() => import('./views/pages/pausas/Pausas'))
+// const ProcessStatus = React.lazy(() => import('./views/pages/reports/Reports'))
 // const Indicadores = React.lazy(() => import('./views/pages/indicadores/Indicadores'))
-const UserList = React.lazy(() => import('./views/pages/UserList/UserList'))
+// const UserList = React.lazy(() => import('./views/pages/UserList/UserList'))
 // const StatusProcessos = React.lazy(() => import('./views/pages/processStatus/ProcessStatus'))
 const UploadPausa = React.lazy(() => import('./views/pages/upload_pausa/Upload_pausa'))
 const ImportPessoas = React.lazy(() => import('./views/pages/import_pessoas/Import_pessoas'))
-const NavHeaderLoader = React.lazy(() => import('./views/pages/loading/NavHeaderLoader'))
+// const NavHeaderLoader = React.lazy(() => import('./views/pages/loading/NavHeaderLoader'))
 const Variations = React.lazy(() => import('./views/pages/variations/Variations'))
 
 const App = () => {
@@ -76,12 +76,12 @@ const App = () => {
               name="Importar Pessoas"
               element={<ImportPessoas />}
             />
-            <Route exact path="/pausas/:id" name="Pausas" element={<Pausas />} />
+            {/* <Route exact path="/pausas/:id" name="Pausas" element={<Pausas />} /> */}
             {/* <Route exact path="/indicadores" name="Indicadores" element={<Indicadores />} /> */}
-            <Route exact path="/relatorios" name="Relatorios" element={<Pausas />} />
-            <Route exact path="/processos" name="Processos" element={<ProcessStatus />} />
-            <Route exact path="/user-list" name="Lista de usuários" element={<UserList />} />
-            <Route exact path="/carregando" name="Carregando" element={<NavHeaderLoader />} />
+            {/* <Route exact path="/relatorios" name="Relatorios" element={<Pausas />} /> */}
+            {/* <Route exact path="/processos" name="Processos" element={<ProcessStatus />} /> */}
+            {/* <Route exact path="/user-list" name="Lista de usuários" element={<UserList />} /> */}
+            {/* <Route exact path="/carregando" name="Carregando" element={<NavHeaderLoader />} /> */}
             <Route exact path="/variations" name="Variations" element={<Variations />} />
           </Route>
           <Route exact path="/404" name="Page 404" element={<Page404 />} />
