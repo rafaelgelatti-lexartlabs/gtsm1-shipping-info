@@ -5,32 +5,17 @@ const routes = require('./src/routes');
 const errorHandler = require('./src/middleware/errorHandler');
 const cors = require("cors");
 
-const corsLocal = {
+const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  origin: [
-    'http://localhost:8000',
-    "https://www.lojagtsm1.com.br",
-    "https://gtsm1.lexartlabs.com.br",
-    `http://localhost:${process.env.FRONTEND_PORT}`
-  ],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
-}
-const corsProd = {
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  origin: [
-    "https://www.lojagtsm1.com.br",
-    "https://gtsm1.lexartlabs.com.br"
-  ],
+  origin: process.env.NODE_ENV !== "production"
+    ? [`http://localhost:${process.env.FRONTEND_PORT}`, 'http://localhost:8000']
+    : ["https://www.lojagtsm1.com.br", "https://gtsm1.lexartlabs.com.br"],
   allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
   credentials: true,
   optionsSuccessStatus: 204
-}
+};
 
-if (process.env.NODE_ENV != "production") {
-  app.use(cors(corsLocal));
-} else {
-  app.use(cors(corsProd));
-}
+app.use(cors(corsOptions));
 
 app.use(routes);
 
