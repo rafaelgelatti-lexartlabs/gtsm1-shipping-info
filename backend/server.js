@@ -7,9 +7,34 @@ const cors = require("cors");
 
 const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-  origin: process.env.NODE_ENV !== "production"
-    ? [`http://localhost:${process.env.FRONTEND_PORT}`, 'http://localhost:8000']
-    : ["https://www.lojagtsm1.com.br", "https://gtsm1.lexartlabs.com.br"],
+  origin: function (origin, callback) {
+    const allowedOrigins = process.env.NODE_ENV !== "production" ? [
+      'http://localhost:8000',
+      'https://www.lojagtsm1.com.br',
+      'https://gtsm1.lexartlabs.com.br',
+      `http://localhost:${process.env.FRONTEND_PORT}`
+    ] : [
+      'https://www.lojagtsm1.com.br',
+      'https://gtsm1.lexartlabs.com.br',
+    ];
+
+
+    if (!origin) {
+      const referer = req.headers.referer;
+      if (referer) {
+        const refererOrigin = new URL(referer).origin;
+        if (allowedOrigins.includes(refererOrigin)) {
+          return callback(null, true);
+        }
+      }
+    }
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Origin não permitida pelo CORS'));
+    }
+  },
   allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
   credentials: true,
   optionsSuccessStatus: 204
