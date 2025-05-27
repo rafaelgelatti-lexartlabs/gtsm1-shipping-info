@@ -5,22 +5,37 @@ const routes = require('./src/routes');
 const errorHandler = require('./src/middleware/errorHandler');
 const cors = require("cors");
 
+const corsLocal = {
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  origin: [
+    'http://localhost:8000',
+    "https://www.lojagtsm1.com.br",
+    "https://gtsm1.lexartlabs.com.br",
+    `http://localhost:${process.env.FRONTEND_PORT}`
+  ],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
+}
+const corsProd = {
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+  origin: [
+    "https://www.lojagtsm1.com.br",
+    "https://gtsm1.lexartlabs.com.br"
+  ],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
+  credentials: true,
+  optionsSuccessStatus: 204
+}
+let corsOptions;
+
 if (process.env.NODE_ENV != "production") {
-  app.use(cors({
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-    origin: ['http://localhost:8000', "https://www.lojagtsm1.com.br/", "https://gtsm1.lexartlabs.com.br", `http://localhost:${process.env.FRONTEND_PORT}`],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
-  }));
+  app.use(cors(corsLocal));
+  corsOptions = corsLocal;
 } else {
-  app.use(cors({
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-    origin: ["https://www.lojagtsm1.com.br/", "https://gtsm1.lexartlabs.com.br"],
-    allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
-  }));
+  app.use(cors(corsProd));
+  corsOptions = corsProd;
 }
 
-// app.use(express.json());
-app.options('*', (_, res) => res.sendStatus(200));
+app.options('*', cors(corsOptions));
 app.use(routes);
 
 app.get('/', (req, res) => {
