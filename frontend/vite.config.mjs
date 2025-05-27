@@ -41,7 +41,7 @@ export default defineConfig(() => {
     },
     server: {
       port: 8000,
-      allowedHosts: ['https://gtsm1.lexartlabs.com.br'],
+      allowedHosts: ['https://gtsm1.lexartlabs.com.br', 'gtsm1.lexartlabs.com.br'],
       proxy: {
         // https://vitejs.dev/config/server-options.html
       },
