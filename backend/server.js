@@ -27,6 +27,8 @@ const corsOptions = {
       return callback(null, true);
     }
 
+    console.log(origin, "ORIGIN");
+
     if (allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
