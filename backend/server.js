@@ -5,30 +5,26 @@ const routes = require('./src/routes');
 const errorHandler = require('./src/middleware/errorHandler');
 const cors = require("cors");
 
+const allowedOrigins = [
+  'https://www.lojagtsm1.com.br',
+  'https://gtsm1.lexartlabs.com.br',
+];
+
+process.env.NODE_ENV !== "production" ? allowedOrigins.push(`http://localhost:${process.env.FRONTEND_PORT}`) : null;
+
+app.use((req, res, next) => {
+  if (!req.headers.origin && req.headers.referer) {
+    const refererOrigin = new URL(req.headers.referer).origin;
+    req.headers.origin = refererOrigin;
+  }
+  next();
+});
+
 const corsOptions = {
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
   origin: function (origin, callback) {
-    const allowedOrigins = process.env.NODE_ENV !== "production" ? [
-      'http://localhost:8000',
-      'https://www.lojagtsm1.com.br',
-      'https://gtsm1.lexartlabs.com.br',
-      `http://localhost:${process.env.FRONTEND_PORT}`
-    ] : [
-      'https://www.lojagtsm1.com.br',
-      'https://gtsm1.lexartlabs.com.br',
-    ];
-
-
-    if (!origin) {
-      const referer = req.headers.referer;
-      console.log(req.headers, 'headers');
-
-      if (referer) {
-        const refererOrigin = new URL(referer).origin;
-        if (allowedOrigins.includes(refererOrigin)) {
-          return callback(null, true);
-        }
-      }
+    if (!origin && process.env.NODE_ENV !== "production") {
+      return callback(null, true);
     }
 
     if (allowedOrigins.includes(origin)) {
@@ -39,8 +35,7 @@ const corsOptions = {
   },
   allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
   credentials: true,
-  optionsSuccessStatus: 204,
-  preflightContinue: false,
+  optionsSuccessStatus: 204
 };
 
 app.use(cors(corsOptions));
