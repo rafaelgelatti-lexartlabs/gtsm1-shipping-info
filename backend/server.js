@@ -25,17 +25,13 @@ const corsProd = {
   credentials: true,
   optionsSuccessStatus: 204
 }
-let corsOptions;
 
 if (process.env.NODE_ENV != "production") {
   app.use(cors(corsLocal));
-  corsOptions = corsLocal;
 } else {
   app.use(cors(corsProd));
-  corsOptions = corsProd;
 }
 
-app.options('*', cors(corsOptions));
 app.use(routes);
 
 app.get('/', (req, res) => {
