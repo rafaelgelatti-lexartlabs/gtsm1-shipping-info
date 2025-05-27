@@ -2,24 +2,19 @@ version: '3.8'
 
 services:
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
-    working_dir: /app
     restart: always
     env_file:
       - .env
     ports:
       - ${BACKEND_PORT}:3000
     volumes:
-      - ./backend:/app
+      - ./backend/src:/app/src
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile
     environment:
       VITE_PUBLIC_API_URL: ${VITE_PUBLIC_API_URL}
-      # VITE_RECAPTCHA_WEB_KEY: ${VITE_RECAPTCHA_WEB_KEY}
     restart: always
     volumes:
       - ./frontend/src:/app/src

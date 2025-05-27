@@ -14,7 +14,7 @@ if (process.env.NODE_ENV != "production") {
 } else {
   app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-    origin: ["https://www.lojagtsm1.com.br/"],
+    origin: ["https://www.lojagtsm1.com.br/", `http://localhost:${process.env.FRONTEND_PORT}`],
     allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
   }));
 }
