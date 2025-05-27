@@ -8,13 +8,13 @@ const cors = require("cors");
 if (process.env.NODE_ENV != "production") {
   app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-    origin: ['http://localhost:8000', "https://www.lojagtsm1.com.br/", `http://localhost:${process.env.FRONTEND_PORT}`],
+    origin: ['http://localhost:8000', "https://www.lojagtsm1.com.br/", "https://gtsm1.lexartlabs.com.br", `http://localhost:${process.env.FRONTEND_PORT}`],
     allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
   }));
 } else {
   app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
-    origin: ["https://www.lojagtsm1.com.br/", `http://localhost:${process.env.FRONTEND_PORT}`],
+    origin: ["https://www.lojagtsm1.com.br/", "https://gtsm1.lexartlabs.com.br"],
     allowedHeaders: ['Content-Type', 'Authorization', 'Custom-Header', 'format'],
   }));
 }
