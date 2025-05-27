@@ -44,10 +44,6 @@ async function loginApi({ username, password }) {
     const result = await axios.post(`${BASE_API_URL}/login`, {
       username,
       password,
-    }, {
-      headers: {
-        'origin': window.location.origin,
-      },
     })
     return result?.data
   } catch (error) {
