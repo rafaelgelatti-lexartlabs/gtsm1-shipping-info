@@ -20,6 +20,7 @@ if (process.env.NODE_ENV != "production") {
 }
 
 // app.use(express.json());
+app.options('*', (_, res) => res.sendStatus(200));
 app.use(routes);
 
 app.get('/', (req, res) => {
