@@ -23,7 +23,7 @@ const bulk = async (file) => {
         const allRows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
         const firstColumn = allRows.map(row => row[0]);
         const result = firstColumn.reduce((acc, item) => {
-            if (item !== null && item !== undefined) {
+            if (item !== null && item !== undefined && item !== '' && item !== ' ' && item !== 'null') {
                 acc.push(String(item).toLowerCase());
             }
             return acc;
