@@ -6,3 +6,5 @@ node_modules
 **/node_modules
 backend/node_modules
 .vscode
+backend/output
+backend/output/variacoes.json

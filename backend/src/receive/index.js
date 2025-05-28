@@ -24,7 +24,7 @@ router.post('/', upload.single('file'), async (req, res, next) => {
         if (!req.file) {
             return res.status(400).json({ error: 'File not found.' });
         }
-        bulk(req.file);
+        await bulk(req.file);
 
         return res.json({ message: 'Success' });
     } catch (error) {

@@ -3,7 +3,7 @@ const path = require('path');
 const XLSX = require('xlsx');
 const CustomError = require('../../middleware/customError');
 
-const bulk = (file) => {
+const bulk = async (file) => {
     try {
         if (!fs.existsSync(file.path)) {
             throw new Error('Arquivo temporário não encontrado');
@@ -35,7 +35,6 @@ const bulk = (file) => {
             fs.unlinkSync(file.path);
         }
         console.log(error);
-
         throw new CustomError(error.message, 400);
     }
 }

@@ -117,7 +117,7 @@ async function uploadPlanilha(file) {
     console.error('Error on upload sheet', error?.response?.data?.message)
     return {
       message:
-        error?.response?.data?.message || 'Planilha de Colaboradores incompleta ou incompatível.',
+        error?.response?.data?.message || 'Erro ao subir planilha de variações.',
       error: true,
     }
   }
