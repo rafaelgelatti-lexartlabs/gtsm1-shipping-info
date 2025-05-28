@@ -13,6 +13,10 @@ const allowedOrigins = [
 process.env.NODE_ENV !== "production" ? allowedOrigins.push(`http://localhost:${process.env.FRONTEND_PORT}`) : null;
 
 app.use((req, res, next) => {
+  console.log(req.headers.referer);
+  console.log(req.headers.origin);
+  console.log(req.headers);
+
   if (!req.headers.origin && req.headers.referer) {
     const refererOrigin = new URL(req.headers.referer).origin;
     req.headers.origin = refererOrigin;
