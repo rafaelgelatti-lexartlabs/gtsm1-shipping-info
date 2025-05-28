@@ -22,14 +22,20 @@ const bulk = async (file) => {
         const worksheet = workbook.Sheets[sheetName];
         const allRows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
         const firstColumn = allRows.map(row => row[0]);
+        const result = firstColumn.reduce((acc, item) => {
+            if (item !== null && item !== undefined) {
+                acc.push(String(item).toLowerCase());
+            }
+            return acc;
+        }, []);
         const outputPath = path.join(__dirname, '..', '..', '..', 'output', 'variacoes.json');
 
         fs.rmSync(path.dirname(outputPath), { recursive: true, force: true });
         fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-        fs.writeFileSync(outputPath, JSON.stringify(firstColumn, null, 2), 'utf-8');
+        fs.writeFileSync(outputPath, JSON.stringify(result, null, 2), 'utf-8');
         fs.unlinkSync(file.path);
 
-        return firstColumn;
+        return result;
     } catch (error) {
         if (fs.existsSync(file.path)) {
             fs.unlinkSync(file.path);
