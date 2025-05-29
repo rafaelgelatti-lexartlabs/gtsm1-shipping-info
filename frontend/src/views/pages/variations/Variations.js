@@ -14,6 +14,7 @@ import {
 
 import { useCallback, useEffect, useState } from 'react'
 import { getExcelOfVariations, getVariations } from '../../../utils/fetchApi'
+// import { fetchVariationDetails } from '../../../utils/fetchApi'
 
 const Variations = () => {
   const [variations, setVariations] = useState([])
@@ -21,6 +22,7 @@ const Variations = () => {
   const [error, setError] = useState(null)
   const [dateStart, setDateStart] = useState('')
   const [dateEnd, setDateEnd] = useState('')
+  // const [details, setDetails] = useState({})
 
   const fetchVariations = useCallback(async () => {
     try {
@@ -28,6 +30,16 @@ const Variations = () => {
       setError(null)
       const data = await getVariations()
       console.log(data);
+
+      // if (data) {
+      //   data.forEach(async (v) => {
+      //     const res = await fetchVariationDetails(v);
+      //     if (res) {
+      //       // console.log(res, "res");
+      //       setDetails(p => ({ ...p, [v]: res }));
+      //     }
+      //   })
+      // }
 
       setVariations(data)
     } catch (err) {
@@ -140,11 +152,15 @@ const Variations = () => {
             </CTableHead>
             <CTableBody>
               {variations.length > 0 ? (
-                variations.map((variation, idx) => (
-                  <CTableRow key={idx}>
-                    <CTableDataCell>{variation}</CTableDataCell>
-                  </CTableRow>
-                ))
+                variations.map((variation, idx) => {
+                  const variationLink = `https://www.lojagtsm1.com.br/bicicletas/fat-i-vtec-tsi7-freio-a-disco-hidraulico-7v-color?opencode_theme=67e6f507-2e5c-484d-8212-14adc0a8044e&variant_id=${variation}`;
+                  return (
+                    <CTableRow key={idx}>
+                      <CTableDataCell>{variation}</CTableDataCell>
+                      <CTableDataCell><a href={variationLink} target="_blank" rel="noopener noreferrer">link</a></CTableDataCell>
+                    </CTableRow>
+                  )
+                })
               ) : (
                 <CTableRow>
                   <CTableDataCell className="text-center">

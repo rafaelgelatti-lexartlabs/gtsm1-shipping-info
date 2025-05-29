@@ -637,6 +637,15 @@ async function getPdfExampleReport(query) {
   }
 }
 
+// const fetchVariationDetails = async (id) => {
+  // const variant = await axios.get(`https://www.lojagtsm1.com.br/web_api/variants?id=${id}`);
+  // if (variant?.data) {
+    // return variant.data?.Variants?.[0]?.Variant
+  // }
+  // return `https://www.lojagtsm1.com.br/bicicletas/fat-i-vtec-tsi7-freio-a-disco-hidraulico-7v-color?opencode_theme=67e6f507-2e5c-484d-8212-14adc0a8044e&variant_id=${id}`;
+  // return `https://www.lojagtsm1.com.br/bicicletas/fat-i-vtec-tsi7-freio-a-disco-hidraulico-7v-color?variant_id=${id}`;
+// }
+
 export {
   checkUser,
   createNewUser,
@@ -657,6 +666,7 @@ export {
   updateReports,
   updateUser,
   uploadImage,
-  uploadPlanilha
+  uploadPlanilha,
+  // fetchVariationDetails
 }
 
