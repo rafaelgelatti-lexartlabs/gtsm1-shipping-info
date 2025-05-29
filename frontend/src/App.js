@@ -56,7 +56,6 @@ const App = () => {
 
   return (
     <HashRouter>
-      {/* <WebSocketProvider> */}
       <Suspense
         fallback={
           <div className="pt-3 text-center">
@@ -89,7 +88,6 @@ const App = () => {
           <Route path="*" name="Home" element={<Login />} />
         </Routes>
       </Suspense>
-      {/* </WebSocketProvider> */}
     </HashRouter>
   )
 }
