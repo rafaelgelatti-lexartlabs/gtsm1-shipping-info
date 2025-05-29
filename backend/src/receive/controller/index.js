@@ -30,7 +30,7 @@ const bulk = async (file) => {
 
         console.log('result:', result);
 
-        const outputDir = path.join(__dirname, '..', '..', '..', 'output');
+        const outputDir = path.join(__dirname, '..', '..', 'output');
         const outputPath = path.join(outputDir, 'variacoes.json');
         const uploadsDir = path.join(__dirname, '..', '..', '..', 'uploads');
 
