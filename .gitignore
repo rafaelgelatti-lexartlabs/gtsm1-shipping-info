@@ -8,3 +8,8 @@ backend/node_modules
 .vscode
 backend/output
 backend/output/variacoes.json
+frontend
+frontend/*
+frontend/**/*
+backend/src/output
+.frontend

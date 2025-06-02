@@ -9,19 +9,19 @@ services:
       - ${BACKEND_PORT}:3000
     volumes:
       - ./backend/src:/app/src
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile
-    environment:
-      VITE_PUBLIC_API_URL: ${VITE_PUBLIC_API_URL}
-    restart: always
-    volumes:
-      - ./frontend/src:/app/src
-    ports:
-      - ${FRONTEND_PORT}:8000
-    depends_on:
-      - backend
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #     dockerfile: Dockerfile
+  #   environment:
+  #     VITE_PUBLIC_API_URL: ${VITE_PUBLIC_API_URL}
+  #   restart: always
+  #   volumes:
+  #     - ./frontend/src:/app/src
+  #   ports:
+  #     - ${FRONTEND_PORT}:8000
+  #   depends_on:
+  #     - backend
 
 volumes:
   backend:

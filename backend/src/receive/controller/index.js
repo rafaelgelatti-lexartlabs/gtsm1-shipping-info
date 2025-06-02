@@ -58,4 +58,29 @@ const bulk = async (file) => {
     }
 };
 
-module.exports = { bulk };
+const update = async (file) => {
+    try {
+        const filePath = path.join(__dirname, '..', '..', 'output', 'variacoes.json');
+        const fileData = await fs.readFile(filePath, 'utf8');
+        let localVariations = JSON.parse(fileData);
+
+        const variationsSet = new Set(localVariations);
+
+        for (const [variation, value] of Object.entries(file)) {
+            if (value) {
+                variationsSet.add(variation);
+            } else {
+                variationsSet.delete(variation);
+            }
+        }
+
+        localVariations = Array.from(variationsSet);
+        await fs.writeFile(filePath, JSON.stringify(localVariations, null, 2), 'utf8');
+        return localVariations;
+    } catch (error) {
+        console.error(error);
+        throw new CustomError(error.message, 400);
+    }
+}
+
+module.exports = { bulk, update };
