@@ -67,7 +67,7 @@ const update = async (file) => {
         const variationsSet = new Set(localVariations);
 
         for (const [variation, value] of Object.entries(file)) {
-            if (value) {
+            if (value || value === "true") {
                 variationsSet.add(variation);
             } else {
                 variationsSet.delete(variation);
