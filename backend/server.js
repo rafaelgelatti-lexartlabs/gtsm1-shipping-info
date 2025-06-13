@@ -8,6 +8,7 @@ const cors = require("cors");
 const allowedOrigins = [
   'https://www.lojagtsm1.com.br',
   'https://gtsm1.lexartlabs.com.br',
+  'https://app.wm10.com.br/'
 ];
 
 process.env.NODE_ENV !== "production" ? allowedOrigins.push(`http://localhost:${process.env.FRONTEND_PORT}`) : null;
